@@ -11,7 +11,6 @@ import { useAuth } from '../../../_providers/Auth'
 import { useCart } from '../../../_providers/Cart'
 import { CheckoutItem } from '../CheckoutItem'
 
-
 import classes from './index.module.scss'
 
 export const CheckoutPage: React.FC<{
@@ -35,13 +34,16 @@ export const CheckoutPage: React.FC<{
   if (!user) return null
 
   const handleWhatsAppClick = () => {
-    const cartItems = cart?.items?.map(item => {
-      if (typeof item.product === 'object') {
-        const { product, quantity } = item
-        return `Product: ${product.title}, Quantity: ${quantity}`
-      }
-      return ''
-    }).filter(Boolean).join('\n')
+    const cartItems = cart?.items
+      ?.map(item => {
+        if (typeof item.product === 'object') {
+          const { product, quantity } = item
+          return `Product: ${product.title}, Quantity: ${quantity}`
+        }
+        return ''
+      })
+      .filter(Boolean)
+      .join('\n')
 
     const message = `Hello, I would like to order the following items:\n${cartItems}\nTotal: ${cartTotal.formatted}`
     const whatsappUrl = `https://wa.me/+541133370937?text=${encodeURIComponent(message)}`
@@ -116,7 +118,3 @@ export const CheckoutPage: React.FC<{
     </Fragment>
   )
 }
-
-
-
-

@@ -9,7 +9,7 @@ import classes from './index.module.scss'
 
 // Define el tipo Media si no está importado
 type Media = {
-  url: string;
+  url: string
   // otros campos que pueda tener Media
 }
 
