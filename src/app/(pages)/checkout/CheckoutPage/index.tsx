@@ -42,7 +42,7 @@ export const CheckoutPage: React.FC<{
         }
         return ''
       })
-      ?.filter(Boolean)
+      .filter(Boolean)
       .join('\n')
 
     const message = `Hello, I would like to order the following items:\n${cartItems}\nTotal: ${cartTotal.formatted}`
