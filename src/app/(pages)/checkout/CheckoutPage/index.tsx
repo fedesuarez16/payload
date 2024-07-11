@@ -1,8 +1,6 @@
 'use client'
 
 import React, { Fragment, useEffect } from 'react'
-import { Elements } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
@@ -11,15 +9,10 @@ import { Button } from '../../../_components/Button'
 import { LoadingShimmer } from '../../../_components/LoadingShimmer'
 import { useAuth } from '../../../_providers/Auth'
 import { useCart } from '../../../_providers/Cart'
-import { useTheme } from '../../../_providers/Theme'
-import cssVariables from '../../../cssVariables'
-import { CheckoutForm } from '../CheckoutForm'
 import { CheckoutItem } from '../CheckoutItem'
 
-import classes from './index.module.scss'
 
-const apiKey = `${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
-const stripe = loadStripe(apiKey)
+import classes from './index.module.scss'
 
 export const CheckoutPage: React.FC<{
   settings: Settings
@@ -31,10 +24,6 @@ export const CheckoutPage: React.FC<{
   const { user } = useAuth()
   const router = useRouter()
   const [error, setError] = React.useState<string | null>(null)
-  const [clientSecret, setClientSecret] = React.useState()
-  const hasMadePaymentIntent = React.useRef(false)
-  const { theme } = useTheme()
-
   const { cart, cartIsEmpty, cartTotal } = useCart()
 
   useEffect(() => {
@@ -43,38 +32,21 @@ export const CheckoutPage: React.FC<{
     }
   }, [router, user, cartIsEmpty])
 
-  useEffect(() => {
-    if (user && cart && hasMadePaymentIntent.current === false) {
-      hasMadePaymentIntent.current = true
+  if (!user) return null
 
-      const makeIntent = async () => {
-        try {
-          const paymentReq = await fetch(
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/api/create-payment-intent`,
-            {
-              method: 'POST',
-              credentials: 'include',
-            },
-          )
-
-          const res = await paymentReq.json()
-
-          if (res.error) {
-            setError(res.error)
-          } else if (res.client_secret) {
-            setError(null)
-            setClientSecret(res.client_secret)
-          }
-        } catch (e) {
-          setError('Something went wrong.')
-        }
+  const handleWhatsAppClick = () => {
+    const cartItems = cart?.items?.map(item => {
+      if (typeof item.product === 'object') {
+        const { product, quantity } = item
+        return `Product: ${product.title}, Quantity: ${quantity}`
       }
+      return ''
+    }).filter(Boolean).join('\n')
 
-      makeIntent()
-    }
-  }, [cart, user])
-
-  if (!user || !stripe) return null
+    const message = `Hello, I would like to order the following items:\n${cartItems}\nTotal: ${cartTotal.formatted}`
+    const whatsappUrl = `https://wa.me/+541133370937?text=${encodeURIComponent(message)}`
+    window.location.href = whatsappUrl
+  }
 
   return (
     <Fragment>
@@ -136,50 +108,15 @@ export const CheckoutPage: React.FC<{
           </ul>
         </div>
       )}
-      {!clientSecret && !error && (
-        <div className={classes.loading}>
-          <LoadingShimmer number={2} />
+      {!cartIsEmpty && (
+        <div className={classes.checkout}>
+          <Button onClick={handleWhatsAppClick} label="Order via WhatsApp" />
         </div>
-      )}
-      {!clientSecret && error && (
-        <div className={classes.error}>
-          <p>{`Error: ${error}`}</p>
-          <Button label="Back to cart" href="/cart" appearance="secondary" />
-        </div>
-      )}
-      {clientSecret && (
-        <Fragment>
-          <h3 className={classes.payment}>Payment Details</h3>
-          {error && <p>{`Error: ${error}`}</p>}
-          <Elements
-            stripe={stripe}
-            options={{
-              clientSecret,
-              appearance: {
-                theme: 'stripe',
-                variables: {
-                  colorText:
-                    theme === 'dark' ? cssVariables.colors.base0 : cssVariables.colors.base1000,
-                  fontSizeBase: '16px',
-                  fontWeightNormal: '500',
-                  fontWeightBold: '600',
-                  colorBackground:
-                    theme === 'dark' ? cssVariables.colors.base850 : cssVariables.colors.base0,
-                  fontFamily: 'Inter, sans-serif',
-                  colorTextPlaceholder: cssVariables.colors.base500,
-                  colorIcon:
-                    theme === 'dark' ? cssVariables.colors.base0 : cssVariables.colors.base1000,
-                  borderRadius: '0px',
-                  colorDanger: cssVariables.colors.error500,
-                  colorDangerText: cssVariables.colors.error500,
-                },
-              },
-            }}
-          >
-            <CheckoutForm />
-          </Elements>
-        </Fragment>
       )}
     </Fragment>
   )
 }
+
+
+
+
