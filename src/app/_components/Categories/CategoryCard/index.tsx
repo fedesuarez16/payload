@@ -1,39 +1,30 @@
-'use client'
-import React from 'react'
-import Link from 'next/link'
+'use client';
+import React from 'react';
+import Link from 'next/link';
 
-import { Category } from '../../../../payload/payload-types'
-import { useFilter } from '../../../_providers/Filter'
+import { Category } from '../../../../payload/payload-types';
+import { useFilter } from '../../../_providers/Filter';
 
-import classes from './index.module.scss'
-
-// Define el tipo Media si no está importado
-type Media = {
-  url: string
-  // otros campos que pueda tener Media
-}
+import classes from './index.module.scss';
 
 type CategoryCardProps = {
-  category: Category
-}
+  category: Category;
+};
 
 const CategoryCard = ({ category }: CategoryCardProps) => {
-  const media = category.media as Media
-  const { setCategoryFilters } = useFilter()
-
-  // Proporciona un valor por defecto si media o media.url es null
-  const backgroundImageUrl = media?.url || 'image-1.jpg'
+  const media = category.media as Media;
+  const { setCategoryFilters } = useFilter();
 
   return (
     <Link
       href="/products"
       className={classes.card}
-      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+      style={{ backgroundImage: `url(${media.url})` }}
       onClick={() => setCategoryFilters([category.id])}
     >
       <p className={classes.title}>{category.title}</p>
     </Link>
-  )
-}
+  );
+};
 
-export default CategoryCard
+export default CategoryCard;
