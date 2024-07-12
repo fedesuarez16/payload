@@ -13,6 +13,7 @@ export const ArchiveBlock: React.FC<
   }
 > = props => {
   const {
+    introContent,
     id,
     relationTo,
     populateBy,
@@ -20,11 +21,16 @@ export const ArchiveBlock: React.FC<
     populatedDocs,
     populatedDocsTotal,
     categories,
+    sort, // Asegúrate de que esta línea esté presente
   } = props;
 
   return (
     <div id={`block-${id}`} className={classes.archiveBlock}>
-     
+      {introContent && (
+        <Gutter className={classes.introContent}>
+          <RichText content={introContent} />
+        </Gutter>
+      )}
       <CollectionArchive
         populateBy={populateBy}
         relationTo={relationTo}
@@ -32,6 +38,7 @@ export const ArchiveBlock: React.FC<
         populatedDocsTotal={populatedDocsTotal}
         categories={categories}
         limit={limit}
+        sort={sort}  // Pasa correctamente la propiedad sort
       />
     </div>
   );
