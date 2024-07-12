@@ -21,6 +21,7 @@ export const ArchiveBlock: React.FC<
     populatedDocs,
     populatedDocsTotal,
     categories,
+    sort, // Añadir esta línea
   } = props
 
   return (
@@ -37,7 +38,7 @@ export const ArchiveBlock: React.FC<
         populatedDocsTotal={populatedDocsTotal}
         categories={categories}
         limit={limit}
-        sort="-publishedOn"
+        sort={sort || "-publishedOn"} // Añadir el valor predeterminado o usar la propiedad pasada
       />
     </div>
   )

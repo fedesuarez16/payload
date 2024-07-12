@@ -1,3 +1,11 @@
-import type { Page } from '../../../payload/payload-types'
-
-export type ArchiveBlockProps = Extract<Page['layout'][0], { blockType: 'archive' }>
+export interface ArchiveBlockProps {
+    introContent?: any;
+    relationTo: string;
+    populateBy: 'collection' | 'selection';
+    limit: number;
+    populatedDocs: any[];
+    populatedDocsTotal: number;
+    categories: string[];
+    sort?: string; // Añadir esta línea
+  }
+  
