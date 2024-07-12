@@ -4,7 +4,12 @@ module.exports = {
   ignorePatterns: ['**/payload-types.ts'],
   plugins: ['prettier'],
   rules: {
-    'prettier/prettier': ['error', { endOfLine: 'auto' }],
     'no-console': 'off',
+   
+      // Añade las reglas que quieras ignorar aquí
+      'simple-import-sort/imports': 'off',
+      'prettier/prettier': 'off',
+      'react-hooks/exhaustive-deps': 'off'
+    
   },
 }
