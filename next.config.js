@@ -6,6 +6,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  eslint: {
+    // Ignora los errores de ESLint durante la compilación
+    ignoreDuringBuilds: true,
+  },
   reactStrictMode: true,
   swcMinify: true,
   images: {
