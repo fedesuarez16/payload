@@ -1,5 +1,4 @@
-// src/app/(pages)/checkout/page.tsx
-'use client';
+
 import React, { Fragment } from 'react'
 
 import { Settings } from '../../../payload/payload-types'
