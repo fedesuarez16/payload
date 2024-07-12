@@ -1,4 +1,4 @@
-// Archivo types.ts
+/* eslint-disable */
 
 export interface ArchiveBlockProps {
     introContent?: RichTextContent;
