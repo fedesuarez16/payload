@@ -1,7 +1,6 @@
 // src/app/(pages)/checkout/page.tsx
 'use client';
 import React, { Fragment } from 'react'
-import { Metadata } from 'next'
 
 import { Settings } from '../../../payload/payload-types'
 import { fetchSettings } from '../../_api/fetchGlobals'
@@ -39,11 +38,3 @@ export default async function Checkout() {
   )
 }
 
-export const metadata: Metadata = {
-  title: 'Account',
-  description: 'Create an account or log in to your existing account.',
-  openGraph: mergeOpenGraph({
-    title: 'Account',
-    url: '/account',
-  }),
-}
