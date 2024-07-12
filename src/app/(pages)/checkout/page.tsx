@@ -1,3 +1,5 @@
+// src/app/(pages)/checkout/page.tsx
+'use client';
 import React, { Fragment } from 'react'
 import { Metadata } from 'next'
 

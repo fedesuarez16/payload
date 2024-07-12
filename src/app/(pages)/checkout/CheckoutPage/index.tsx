@@ -1,8 +1,13 @@
+// src/app/(pages)/checkout/CheckoutPage/index.tsx
+'use client';
+
 // eslint-disable-next-line simple-import-sort/imports
 import React, { Fragment, useEffect } from 'react'
 // eslint-disable-next-line prettier/prettier
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+// el resto de tu código...
+
 
 import { Settings } from '../../../../payload/payload-types'
 import { Button } from '../../../_components/Button'
