@@ -3,14 +3,8 @@ const ContentSecurityPolicy = require('./csp')
 const redirects = require('./redirects')
 
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    // Ignora los errores de ESLint durante la compilación
-    ignoreDuringBuilds: true,
-  },
-  reactStrictMode: true,
+
+  reactStrictMode: false,
   swcMinify: true,
   images: {
     domains: ['localhost', process.env.NEXT_PUBLIC_SERVER_URL]
