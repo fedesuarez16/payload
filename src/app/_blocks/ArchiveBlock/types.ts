@@ -14,3 +14,4 @@ export interface ArchiveBlockProps {
   // Define el tipo RichTextContent si no está definido en otra parte
   export type RichTextContent = string; // Cambia esto según la estructura real de RichTextContent
   
+  
