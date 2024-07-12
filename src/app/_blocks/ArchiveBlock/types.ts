@@ -1,15 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable eol-last */
-
-
 export interface ArchiveBlockProps {
-    introContent?: any;
-    relationTo: string;
+    introContent?: RichTextContent;
+    relationTo: 'products'; // Cambia esto si puede ser otro valor
     populateBy: 'collection' | 'selection';
     limit: number;
-    populatedDocs: any[];
+    populatedDocs: Array<{ relationTo: string; value: unknown }>;
     populatedDocsTotal: number;
     categories: string[];
-    sort?: string; // Añadir esta línea
+    sort?: string;
   }
   

@@ -1,19 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable eol-last */
+import React from 'react';
 
+import { CollectionArchive } from '../../_components/CollectionArchive';
+import { Gutter } from '../../_components/Gutter';
+import RichText from '../../_components/RichText';
+import { ArchiveBlockProps } from './types';
 
-import React from 'react'
-
-import { CollectionArchive } from '../../_components/CollectionArchive'
-import { Gutter } from '../../_components/Gutter'
-import RichText from '../../_components/RichText'
-import { ArchiveBlockProps } from './types'
-
-import classes from './index.module.scss'
+import classes from './index.module.scss';
 
 export const ArchiveBlock: React.FC<
   ArchiveBlockProps & {
-    id?: string
+    id?: string;
   }
 > = props => {
   const {
@@ -25,8 +21,8 @@ export const ArchiveBlock: React.FC<
     populatedDocs,
     populatedDocsTotal,
     categories,
-    sort, // Añadir esta línea
-  } = props
+    sort
+  } = props;
 
   return (
     <div id={`block-${id}`} className={classes.archiveBlock}>
@@ -42,8 +38,8 @@ export const ArchiveBlock: React.FC<
         populatedDocsTotal={populatedDocsTotal}
         categories={categories}
         limit={limit}
-        sort={sort || "-publishedOn"} // Añadir el valor predeterminado o usar la propiedad pasada
+        sort="-publishedOn"
       />
     </div>
-  )
-}
+  );
+};
