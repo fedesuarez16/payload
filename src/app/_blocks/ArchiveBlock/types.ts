@@ -1,6 +1,6 @@
 export interface ArchiveBlockProps {
     introContent?: RichTextContent;
-    relationTo: 'products'; // Cambia esto si puede ser otro valor
+    relationTo: 'products';
     populateBy: 'collection' | 'selection';
     limit: number;
     populatedDocs: Array<{ relationTo: string; value: unknown }>;

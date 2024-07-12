@@ -9,7 +9,7 @@ module.exports = {
       // Añade las reglas que quieras ignorar aquí
       'simple-import-sort/imports': 'off',
       'prettier/prettier': 'off',
-      'react-hooks/exhaustive-deps': 'off'
+      'react-hooks/exhaustive-deps': 'off',
     
   },
 }
