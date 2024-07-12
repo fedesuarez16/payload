@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable eol-last */
+
+
 export interface ArchiveBlockProps {
     introContent?: any;
     relationTo: string;

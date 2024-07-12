@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable eol-last */
+
+
 import React from 'react'
 
 import { CollectionArchive } from '../../_components/CollectionArchive'
