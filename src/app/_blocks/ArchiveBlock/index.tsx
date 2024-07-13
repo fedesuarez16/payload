@@ -38,7 +38,6 @@ export const ArchiveBlock: React.FC<
         populatedDocsTotal={populatedDocsTotal}
         categories={categories}
         limit={limit}
-        sort={sort}  // Pasa correctamente la propiedad sort
       />
     </div>
   );
