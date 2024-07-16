@@ -1,3 +1,5 @@
+const { endOfLine } = require("./.prettierrc");
+
 module.exports = {
   root: true,
   extends: ['plugin:@next/next/recommended', '@payloadcms'],
@@ -8,7 +10,7 @@ module.exports = {
    
       // Añade las reglas que quieras ignorar aquí
       'simple-import-sort/imports': 'off',
-      'prettier/prettier': 'off',
+      'prettier/prettier': ['error', {endOfLine: 'auto'}],
       'react-hooks/exhaustive-deps': 'off',
     
   },
